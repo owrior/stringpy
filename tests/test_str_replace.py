@@ -8,6 +8,16 @@ def test_str_replace_str():
     string = "The cat sat in the hat."
     pattern = r'at'
     final = str_replace(string, r'at', "")
-    print(final)
     assert str_replace(string, r'at', "") == "The c sat in the hat."
     
+def test_str_replace_df():
+    df = pd.DataFrame({
+        'A': ["Cat", "Fat", "Foot"]
+    })
+    df_test = pd.DataFrame({
+        'A': ["Cat", "Fat", "Foot"],
+        'B': ["C", "F", "Foot"]
+    })
+    pattern = r'at'
+    df['B'] = str_replace(df['A'], r'at', "")
+    assert assert_frame_equal(df, df_test) is None

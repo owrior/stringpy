@@ -11,7 +11,7 @@ def _compile(pattern):
         raise ValueError("Please enter either a string or dict for pattern.")
     return _pattern
 
-def _replace(string, _pattern, replace, count):
+def _replace(string, pattern, _pattern, replace, count):
     if isinstance(pattern, dict):
         string = _pattern.sub(lambda m: _rep[_re.escape(m.group(0))], string, count)
     elif isinstance(pattern, str):
@@ -24,11 +24,11 @@ def str_replace(string, pattern, replace):
     if isinstance(string, _pd.Series):
         _pattern = _compile(pattern)
         def _pd_rep(x):
-            return _replace(x, _pattern, replace, 1)
+            return _replace(x, pattern, _pattern, replace, 1)
         return string.apply(_pd_rep)
     elif isinstance(string, str):
         _pattern = _compile(pattern)
-        string = _replace(string, _pattern, replace, 1)
+        string = _replace(string, pattern, _pattern, replace, 1)
         return string
     else:
         raise ValueError("Please enter either a pandas series or a string.")
