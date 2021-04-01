@@ -1,6 +1,6 @@
 import pandas as _pd
 import re as _re
-from .util import *
+from .util import _compile, _replace
 
 def str_replace(string, pattern, replace, count=1):
     if isinstance(string, _pd.Series):

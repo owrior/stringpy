@@ -18,3 +18,6 @@ def _replace(string, pattern, _pattern, replace, count):
     else:
         raise ValueError("Please enter either a string or dict for pattern.")
     return string
+
+def _detect(string, _pattern):
+    return bool(_pattern.match(string))
